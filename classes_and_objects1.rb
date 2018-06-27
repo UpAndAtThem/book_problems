@@ -9,10 +9,11 @@
 #   year, color, model, current_speed = 0
 
 # behavior:
-#   -instance methods that brakes, speeds up, and shuts off
+#   -instance methods that brakes, speeds up, and shuts off, spray_paint
 
 class MyCar
-  attr_accessor :year, :color, :model, :speed
+  attr_accessor :color, :speed
+  attr_reader :year, :model 
 
   def initialize(year, color, model)
     @year = year
@@ -21,12 +22,20 @@ class MyCar
     @speed = 0
   end
 
-  def speed_up(new_speed)
-    self.speed = new_speed
+  def brake(speed_decrease)
+    @speed -= speed_decrease
+  end
+
+  def speed_up(speed_increase)
+    @speed += speed_increase
   end
 
   def shut_off
     self.speed = 0
+  end
+
+  def spray_paint(color)
+    self.color = color
   end
 end
 
