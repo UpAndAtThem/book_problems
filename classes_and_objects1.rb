@@ -10,16 +10,25 @@
 
 # behavior:
 #   -instance methods that brakes, speeds up, and shuts off, spray_paint
-
 class MyCar
-  attr_accessor :color, :speed
+  attr_accessor :color, :speed, :mileage
   attr_reader :year, :model 
 
   def initialize(year, color, model)
     @year = year
     @color = color
     @model = model
+    @mileage = mileage model
     @speed = 0
+  end
+
+  def mileage(make)
+    case make
+    when "Tempo"     then 29
+    when "Celica"    then 23
+    when "Impala"    then 13
+    when "outlander" then 23
+    end
   end
 
   def brake(speed_decrease)
@@ -39,4 +48,6 @@ class MyCar
   end
 end
 
-probe = MyCar.new(1992, "red", "Probe")
+impala = MyCar.new(1992, "red", "Impala")
+
+binding.pry
