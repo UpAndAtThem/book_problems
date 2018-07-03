@@ -5,11 +5,24 @@
 
 # Then create a new class called MyTruck that inherits from your superclass 
 # that also has a constant defined that separates it from the MyCar class in some way.
+module HeadLightMotor
+  def flip_up
+    self.flipped_up = true
+  end
+
+  def flip_down
+    self.flipped_up = false
+  end
+end
+
 class Vehicle
+  @@fleet = 0
+
   attr_accessor :color, :speed
   attr_reader :year, :model 
 
   def initialize(year, color, model)
+    @@fleet += 1
     @year = year
     @color = color
     @model = model
@@ -39,8 +52,17 @@ class Vehicle
 end
 
 class MyCar < Vehicle
+  include HeadLightMotor
+
   DOORS = 4
   CONVERTABLE = false
+
+  attr_accessor :flipped_up
+
+  def initialize(year, color, model)
+    super
+    self.flipped_up = false
+  end
 
   def to_s
     "My car is a #{color} #{year} #{model}"
@@ -59,5 +81,5 @@ end
 f_150 = MyTruck.new(2004, "white", "F-150")
 probe = MyCar.new(1992, "red", "Probe")
 
-p f_150.to_s
-p probe.to_s
+p probe.flip_up
+p probe
