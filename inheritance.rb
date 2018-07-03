@@ -49,6 +49,12 @@ class Vehicle
   def spray_paint(color)
     self.color = color
   end
+
+  private
+
+  def age
+    Time.new.year - year
+  end
 end
 
 class MyCar < Vehicle
@@ -65,7 +71,7 @@ class MyCar < Vehicle
   end
 
   def to_s
-    "My car is a #{color} #{year} #{model}"
+    "My car is a #{color} #{year} #{model}, and is #{age} years old"
   end
 end
 
@@ -74,12 +80,12 @@ class MyTruck < Vehicle
   LONGBED = false
 
   def to_s
-    "My truck is a #{color} #{year} #{model}"
+    "My truck is a #{color} #{year} #{model}, and is #{age} years old"
   end
 end
 
 f_150 = MyTruck.new(2004, "white", "F-150")
 probe = MyCar.new(1992, "red", "Probe")
 
-p probe.flip_up
-p probe
+p probe.to_s
+p f_150.to_s
